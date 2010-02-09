@@ -1,0 +1,70 @@
+Various scripts for playing around with Astro Empires dataz...
+
+prod_report.rb - Script that will spit out unit production visible from the credits page.
+
+Usage:
+
+Go to your credits page, click "view more", copy everything that shows up, save to a file and run:
+
+ruby prod_report.rb your_file.txt
+
+Example file:
+
+09 Feb 2010, 18:51:16	Production of 100 Frigate at Ninjad Base	-8000	387418
+09 Feb 2010, 18:51:16	Production of 200 Destroyer at Ninjad Base	-8000	395418
+09 Feb 2010, 18:51:16	Production of 200 Recycler at Ninjad Base	-6000	403418
+09 Feb 2010, 18:51:16	Production of 400 Corvette at Ninjad Base	-8000	409418
+09 Feb 2010, 18:51:16	Production of 400 Heavy Bombers at Ninjad Base	-12000	417418
+09 Feb 2010, 18:00:00	Empire Income	+10122	429418
+09 Feb 2010, 17:00:00	Empire Income	+10122	419296
+09 Feb 2010, 16:00:00	Empire Income	+10119	409174
+09 Feb 2010, 15:00:00	Empire Income	+10119	399055
+09 Feb 2010, 14:00:00	Empire Income	+10119	388936
+09 Feb 2010, 13:00:00	Empire Income	+10119	378817
+09 Feb 2010, 12:00:00	Empire Income	+10119	368698
+09 Feb 2010, 11:00:00	Empire Income	+10119	358579
+09 Feb 2010, 10:00:00	Empire Income	+10119	348460
+09 Feb 2010, 09:00:00	Empire Income	+10119	338341
+09 Feb 2010, 08:15:26	Construction of Orbital Shipyards lvl 7 at Pie Man	-102516	328222
+
+(Note that it only includes the actual credits data, no headers and stuff)
+
+profit_calc.rb - Script that will spit out some information about hits.
+
+Usage:
+
+Copy however many battle reports you want into a file.
+
+ruby profit_calc.rb your_file.txt
+
+Example file:
+
+Combat
+Location 	Valhöll (B**:**:**:**)
+Time 	16-08-2009 22:41:52
+Attack Force
+Player 	[RAGE] runner (level 110.24)
+Fleet Name 	Fleet 2883
+Defensive Force
+Player 	[CHUG] Banana (level 74.1)
+Fleet Name 	Slip On This! (Destroyed)
+Attack Force
+Unit 	Start Quant. 	End Quant. 	Power 	Armour 	Shield
+Titan 	2 	0 	? 	? 	?
+Leviathan 	403 	393.82 	? 	? 	?
+Defensive Force
+Unit 	Start Quant. 	End Quant. 	Power 	Armour 	Shield
+Fighters 	337792 	0 	? 	? 	?
+Heavy Bombers 	6000 	0 	? 	? 	?
+Corvette 	28564 	0 	? 	? 	?
+Destroyer 	25200 	0 	? 	? 	?
+Cruiser 	10114 	0 	? 	? 	?
+Heavy Cruiser 	8667 	0 	? 	? 	?
+Fleet Carrier 	600 	0 	? 	? 	?
+
+Total cost of units destroyed: 13204540 ( Attacker: 1900000 ; Defender: 11304540 )
+
+Experience: ( Attacker: +298299 ; Defender: +982232 )
+
+New Debris in Space: 7508542
+
