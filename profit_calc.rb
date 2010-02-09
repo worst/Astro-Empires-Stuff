@@ -90,14 +90,15 @@ puts "Defender losses: #{losses[:defender]}"
 puts "Derbs: #{derbs}"
 puts "Pillage: #{pillage}"
 
-puts "Profits: #{pillage + derbs - losses[:attacker]}"
+profits = pillage + derbs - losses[:attacker]
+puts "Profits: #{profits}"
 if !attack
   puts "Ratio: #{losses[:attacker].to_f/losses[:defender].to_f}"
 else
   puts "Ratio: #{losses[:defender].to_f/losses[:attacker].to_f}"
 end
 
-puts "Return on Investment: #{100.0 * (pillage + derbs - losses[:attacker] - losses[:attacker]).to_f/losses[:attacker].to_f}%"
+puts "Return on Investment: #{100.0 * (profits - losses[:attacker]).to_f/losses[:attacker].to_f}%"
 
 puts "Attacker XP: #{exp[:attacker]}"
 puts "Defender XP: #{exp[:defender]}"
