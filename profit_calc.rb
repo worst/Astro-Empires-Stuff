@@ -97,6 +97,8 @@ else
   puts "Ratio: #{losses[:defender].to_f/losses[:attacker].to_f}"
 end
 
+puts "Return on Investment: #{100.0 * (pillage + derbs - losses[:attacker] - losses[:attacker]).to_f/losses[:attacker].to_f}%"
+
 puts "Attacker XP: #{exp[:attacker]}"
 puts "Defender XP: #{exp[:defender]}"
 
