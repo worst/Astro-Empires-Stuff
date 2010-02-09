@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # sample data file:
 #
 # Battle Report
@@ -49,10 +51,17 @@ r_units_destroyed = /Total cost of units destroyed: [0-9]+ \( Attacker: ([0-9]+)
 r_derbs = /New debris in space: ([0-9]+)/i
 r_pillage = /Attacker got ([0-9]+) credits for pillaging defender's base./
 r_experience = /Experience: \( Attacker: \+([0-9]+) ; Defender: \+([0-9]+) \)/i
+# there are two ways to see how many credits you got from a trade route.
+# i'd wager that there is a way to grab them both from a single regex,
+# but my regex-fu is not strong :(
+r_trades1 = /You got ([0-9]+) credits from plundering this trade route/i
+r_trades2 = /Plunder of trade route from[\saA-zZ]+\+([0-9]+)/i
+
 
 losses = {:attacker => 0, :defender => 0}
 derbs = 0
 pillage = 0
+trades = 0
 exp = {:attacker => 0, :defender => 0}
 
 f = File.open(data_file)
@@ -76,6 +85,22 @@ matches.each do |match|
   pillage += match[0].to_i
 end
 
+# handle the first case of trade inputs...
+f.rewind
+f.read.scan(r_trades1).each { |match| trades += match[0].to_i }
+# matches = f.read.scan(r_trade1)
+# matches.each do |match|
+#   trades += match[0].to_i
+# end
+
+# second case of trade inputs
+f.rewind
+f.read.scan(r_trades2).each { |match| trades += match[0].to_i }
+
+
+
+
+
 f.rewind
 matches = f.read.scan(r_experience)
 matches.each do |match|
@@ -89,8 +114,9 @@ puts "Attacker losses: #{losses[:attacker]}"
 puts "Defender losses: #{losses[:defender]}"
 puts "Derbs: #{derbs}"
 puts "Pillage: #{pillage}"
+puts "Trades: #{trades}"
 
-profits = pillage + derbs - losses[:attacker]
+profits = pillage + derbs + trades - losses[:attacker]
 puts "Profits: #{profits}"
 if !attack
   puts "Ratio: #{losses[:attacker].to_f/losses[:defender].to_f}"
