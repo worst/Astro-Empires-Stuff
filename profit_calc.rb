@@ -48,10 +48,12 @@ end
 r_units_destroyed = /Total cost of units destroyed: [0-9]+ \( Attacker: ([0-9]+) ; Defender: ([0-9]+) \)/
 r_derbs = /New debris in space: ([0-9]+)/i
 r_pillage = /Attacker got ([0-9]+) credits for pillaging defender's base./
+r_experience = /Experience: \( Attacker: \+([0-9]+) ; Defender: \+([0-9]+) \)/i
 
 losses = {:attacker => 0, :defender => 0}
 derbs = 0
 pillage = 0
+exp = {:attacker => 0, :defender => 0}
 
 f = File.open(data_file)
 
@@ -74,6 +76,13 @@ matches.each do |match|
   pillage += match[0].to_i
 end
 
+f.rewind
+matches = f.read.scan(r_experience)
+matches.each do |match|
+  exp[:attacker] += match[0].to_i
+  exp[:defender] += match[1].to_i
+end
+
 puts
 puts "=" * 50
 puts "Attacker losses: #{losses[:attacker]}"
@@ -87,6 +96,9 @@ if !attack
 else
   puts "Ratio: #{losses[:defender].to_f/losses[:attacker].to_f}"
 end
+
+puts "Attacker XP: #{exp[:attacker]}"
+puts "Defender XP: #{exp[:defender]}"
 
 puts "=" * 50
 puts
