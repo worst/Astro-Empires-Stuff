@@ -24,7 +24,6 @@ matches.each do |match|
   hash[match[1]] ||= 0
 
   hash[match[1]] += match[0].to_i
-  hash[match[1]] += match[0].to_i
 end
 
 puts
