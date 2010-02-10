@@ -5,6 +5,8 @@ r2 = /Production of ([0-9]+) ([aA-zZ ]+)/i
 
 hash = {}
 f.lines.each do |l|
+  splits = l.split("\t")
+  next if splits.length < 3
   matches = l.split("\t")[1].match(r)
   next if matches.nil?
 
