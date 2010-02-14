@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+
+
 f = File.open(ARGV[0])
 r = /[aA-zZ ]+([0-9]+)[ ]([aA-zZ]+[ aA-zZ]+) at[ aA-zZ]/
 
