@@ -115,8 +115,11 @@ puts "Defender losses: #{losses[:defender]}"
 puts "Derbs: #{derbs}"
 puts "Pillage: #{pillage}"
 puts "Trades: #{trades}"
-
-profits = pillage + derbs + trades - losses[:attacker]
+if !attack
+  profits = pillage + derbs + trades - losses[:defender]
+else
+  profits = pillage + derbs + trades - losses[:attacker]
+end
 puts "Profits: #{profits}"
 if !attack
   puts "Ratio: #{"%.4f" % (losses[:attacker].to_f/losses[:defender].to_f)}"
@@ -124,7 +127,12 @@ else
   puts "Ratio: #{"%.4f" % (losses[:defender].to_f/losses[:attacker].to_f)}"
 end
 
-puts "Return on Investment: #{"%.2f" % (100.0 * profits.to_f/losses[:attacker].to_f)}%"
+if !attack
+  puts "Return on Investment: #{"%.2f" % (100.0 * profits.to_f/losses[:defender].to_f)}%"
+else
+  puts "Return on Investment: #{"%.2f" % (100.0 * profits.to_f/losses[:attacker].to_f)}%"
+end
+
 
 puts "Attacker XP: #{exp[:attacker]}"
 puts "Defender XP: #{exp[:defender]}"
